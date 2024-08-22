@@ -1,0 +1,71 @@
+[gd_scene load_steps=7 format=3 uid="uid://b64mk3wygycee"]
+
+[ext_resource type="Texture2D" uid="uid://dokmeonlrjoke" path="res://Assets/Seasonal Tilesets/3 - Tropics/Background parts/_Complete_static_BG_(288 x 208).png" id="1_7t5bs"]
+[ext_resource type="Script" path="res://Scripts/title_screen.gd" id="1_fjq42"]
+[ext_resource type="Texture2D" uid="uid://c3vwb041b58ei" path="res://Assets/1.png" id="2_v6t83"]
+[ext_resource type="Theme" uid="uid://bbn6wy5jhnhc5" path="res://titletheme.tres" id="3_2e16f"]
+[ext_resource type="Texture2D" uid="uid://dr6w08k74r650" path="res://Assets/Sprite Pack 6/4 - Orange/Jumping (32 x 32).png" id="3_juwt6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wv85q"]
+
+[node name="TitleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fjq42")
+
+[node name="bg" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 320.0
+texture = ExtResource("1_7t5bs")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="game_logo" type="TextureRect" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_v6t83")
+
+[node name="start" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_2e16f")
+text = "START"
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_wv85q")
+
+[node name="quit" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_2e16f")
+text = "QUIT"
+
+[node name="orange" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_juwt6")
+expand_mode = 2
+flip_h = true
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/quit" to="." method="_on_quit_pressed"]

@@ -1,0 +1,66 @@
+[gd_scene load_steps=7 format=3 uid="uid://tognqjdm3fct"]
+
+[ext_resource type="Texture2D" uid="uid://bf1mk4eh2t6o0" path="res://Assets/Seasonal Tilesets/1 - Grassland/Grassland_entities (16 x 16).png" id="1_nne4i"]
+[ext_resource type="Script" path="res://Scripts/goal.gd" id="1_s18nu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xbel4"]
+size = Vector2(20, 18)
+
+[sub_resource type="Animation" id="Animation_boep7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -8)]
+}
+
+[sub_resource type="Animation" id="Animation_dfh0d"]
+resource_name = "float"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -8), Vector2(0, -9)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bcayq"]
+_data = {
+"RESET": SubResource("Animation_boep7"),
+"float": SubResource("Animation_dfh0d")
+}
+
+[node name="goal" type="Area2D"]
+collision_layer = 2
+script = ExtResource("1_s18nu")
+
+[node name="sprite" type="Sprite2D" parent="."]
+position = Vector2(0, -8)
+texture = ExtResource("1_nne4i")
+region_enabled = true
+region_rect = Rect2(48, 80, 16, 16)
+
+[node name="collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, -9)
+shape = SubResource("RectangleShape2D_xbel4")
+
+[node name="anim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_bcayq")
+}
+autoplay = "float"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

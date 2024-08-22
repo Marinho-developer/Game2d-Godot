@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://ctp1v8des77ju"]
+
+[ext_resource type="Texture2D" uid="uid://dx3pkpyyl7qgb" path="res://Assets/Seasonal Tilesets/5 - Misc. universal tiles/Blocks (16 x 16).png" id="1_rjhbt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hm3hd"]
+size = Vector2(32, 16)
+
+[node name="moving_platform" type="Node2D"]
+
+[node name="platform" type="AnimatableBody2D" parent="."]
+
+[node name="sprite_platform" type="Sprite2D" parent="platform"]
+texture = ExtResource("1_rjhbt")
+region_enabled = true
+region_rect = Rect2(96, 64, 32, 16)
+
+[node name="collision" type="CollisionShape2D" parent="platform"]
+shape = SubResource("RectangleShape2D_hm3hd")
